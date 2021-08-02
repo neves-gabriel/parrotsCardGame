@@ -7,12 +7,20 @@ let totalJogadas = 0;
 let cartaAnterior = "";
 let parrotAnterior = "";
 let cartasViradas = 0;
+let nome = "";
 const relogio = document.getElementById("relogio");
 const tiposCartas = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"]
 
 document.querySelector("#baralho").addEventListener('click', userClick);
 
-perguntarQtde();
+perguntarNome();
+
+function perguntarNome() {
+    while (nome == "") {
+        nome = prompt("Qual é o seu nome?");
+    }
+    perguntarQtde();
+}
 
 function perguntarQtde() {
     while (qtdeCartas > 14 || qtdeCartas < 4 || qtdeCartas % 2 !== 0) {
@@ -92,7 +100,7 @@ function userClick(event) {
 }
 
 function finalJogo() {
-    alert(`Você venceu o jogo em ${totalJogadas} jogadas e ${segundos} segundos!`);
+    alert(`Você ganhou em ${totalJogadas} jogadas e ${segundos} segundos!`);
     let respostaPrompt = false;
     while (!respostaPrompt) {
         reiniciarPartida = prompt("Você gostaria de reiniciar a partida? Responda abaixo com sim ou não");
@@ -103,7 +111,8 @@ function finalJogo() {
             cartasViradas = 0;
             segundos = 0;
             relogio.innerHTML = "0";
-            perguntarQtde();
+            nome = "";
+            perguntarNome();
         } else if (reiniciarPartida === "não" || reiniciarPartida === "nao" || reiniciarPartida === "n" || reiniciarPartida === "no") {
             respostaPrompt = true;
         }
