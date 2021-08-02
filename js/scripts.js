@@ -1,12 +1,16 @@
 let qtdeCartas = 0;
+let cartasSelecionadas = [];
 let segundos = 0;
 let intervalo;
+let bloqueio = false;
+let totalMovimentos = 0;
+let cartaAnterior = "";
+let parrotAnterior = "";
+let cartasViradas = 0;
 const relogio = document.getElementById("relogio");
 const tiposCartas = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"]
 
-
-
-
+document.querySelector("#baralho").addEventListener('click', userClick);
 
 perguntarQtde();
 
@@ -16,10 +20,6 @@ function perguntarQtde() {
     }
     montarBaralho();
     iniciarRelogio();
-}
-
-function montarBaralho () {
-
 }
 
 function iniciarRelogio () {
@@ -61,3 +61,51 @@ function comparador() {
     return Math.random() - 0.5;
 }
 
+function userClick(event) {
+    const cartaEscolhida = event.target.parentNode;
+    const tipoParrot = cartaEscolhida.classList[1]
+    if (cartaEscolhida.classList[0] === "carta" && !cartaEscolhida.classList.contains("virada") && bloqueio !== true) {
+        cartaEscolhida.classList.add("virada");
+        totalMovimentos++
+        if (cartaAnterior === "") {
+            cartaAnterior = cartaEscolhida;
+            parrotAnterior = tipoParrot;
+        } else if (tipoParrot !== parrotAnterior) {
+            bloqueio = true;
+            setTimeout(function () {
+                bloqueio = false;
+                cartaEscolhida.classList.remove("virada");
+                cartaAnterior.classList.remove("virada");
+                cartaAnterior = "";
+                parrotAnterior = "";
+            }, 1000);
+        } else {
+            cartasViradas = cartasViradas + 2;
+            cartaAnterior = "";
+            parrotAnterior = "";
+        }
+        if (cartasViradas === qtdeCartas) {
+            pararRelogio();
+            setTimeout(finalJogo, 500);
+        }
+    }
+}
+
+function finalJogo() {
+    alert(`Você venceu o jogo em ${totalMovimentos} jogadas e ${segundos} segundos!`);
+    let respostaPrompt = false;
+    while (!respostaPrompt) {
+        reiniciarPartida = prompt("Você gostaria de reiniciar a partida? Responda abaixo com sim ou não");
+        if (reiniciarPartida === "sim" || reiniciarPartida === "s") {
+            respostaPrompt = true;
+            qtdeCartas = 0;
+            totalMovimentos = 0;
+            cartasViradas = 0;
+            segundos = 0;
+            relogio.innerHTML = "0";
+            perguntarQtde();
+        } else if (reiniciarPartida === "não" || reiniciarPartida === "nao" || reiniciarPartida === "n") {
+            respostaPrompt = true;
+        }
+    }
+}
