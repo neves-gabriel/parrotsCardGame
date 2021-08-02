@@ -1,0 +1,92 @@
+body{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    background: #EEF9BF;
+    color: #75B79E;
+}
+
+.topo {
+    width: 100%;
+    margin: 0px auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 56px;
+}
+
+.relogio {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    font-size: 45px;
+}
+
+.baralho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 90%;
+    margin: 0px auto;
+}
+
+.carta {
+    height: 146px;
+    width: 117px;
+    margin: 17px;
+    cursor: pointer;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px 100px;
+}
+
+.frente {
+    background-image: url(../img/front.png);
+}
+
+.costa {
+    background-image: url(../img/front.png);
+}
+
+.carta.bobross .costa {
+    background-image: url(../gif/bobrossparrot.gif);
+}
+
+.carta.explody .costa {
+    background-image: url(../gif/explodyparrot.gif);
+}
+
+.carta.fiesta .costa {
+    background-image: url(../gif/fiestaparrot.gif);
+}
+
+.carta.metal .costa {
+    background-image: url(../gif/metalparrot.gif);
+}
+
+.carta.revertit .costa {
+    background-image: url(../gif/revertitparrot.gif);
+}
+
+.carta.triplets .costa {
+    background-image: url(../gif/tripletsparrot.gif);
+}
+
+.carta.unicorn .costa {
+    background-image: url(../gif/unicornparrot.gif);
+}
