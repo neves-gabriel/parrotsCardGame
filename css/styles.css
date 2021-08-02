@@ -21,7 +21,7 @@ body{
     margin: 40px auto 47px auto;
 }
 
-.relogio {
+#relogio {
     position: absolute;
     right: 20px;
     top: 40px;

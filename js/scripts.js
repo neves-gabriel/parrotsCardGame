@@ -1,4 +1,7 @@
 let QtdeCartas = 0;
+let segundos = 0;
+let intervalo;
+const relogio = document.getElementById("relogio");
 
 
 
@@ -19,5 +22,12 @@ function montarBaralho () {
 }
 
 function iniciarRelogio () {
-    
+    clearInterval(intervalo);
+    intervalo = setInterval(contarSegundos, 1000);
 }
+
+function contarSegundos() {
+    segundos++;
+    relogio.innerHTML = segundos;
+}
+
