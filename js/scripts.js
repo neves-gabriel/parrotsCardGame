@@ -66,7 +66,7 @@ function userClick(event) {
     const tipoParrot = cartaEscolhida.classList[1]
     if (cartaEscolhida.classList[0] === "carta" && !cartaEscolhida.classList.contains("virada") && bloqueio !== true) {
         cartaEscolhida.classList.add("virada");
-        totalJogadas++
+        totalJogadas++;
         if (cartaAnterior === "") {
             cartaAnterior = cartaEscolhida;
             parrotAnterior = tipoParrot;
@@ -86,7 +86,7 @@ function userClick(event) {
         }
         if (cartasViradas === qtdeCartas) {
             pararRelogio();
-            setTimeout(finalJogo, 500);
+            setTimeout(finalJogo, 1000);
         }
     }
 }
@@ -96,7 +96,7 @@ function finalJogo() {
     let respostaPrompt = false;
     while (!respostaPrompt) {
         reiniciarPartida = prompt("Você gostaria de reiniciar a partida? Responda abaixo com sim ou não");
-        if (reiniciarPartida === "sim" || reiniciarPartida === "s") {
+        if (reiniciarPartida === "sim" || reiniciarPartida === "s" || reiniciarPartida === "y" || reiniciarPartida === "yes") {
             respostaPrompt = true;
             qtdeCartas = 0;
             totalJogadas = 0;
@@ -104,7 +104,7 @@ function finalJogo() {
             segundos = 0;
             relogio.innerHTML = "0";
             perguntarQtde();
-        } else if (reiniciarPartida === "não" || reiniciarPartida === "nao" || reiniciarPartida === "n") {
+        } else if (reiniciarPartida === "não" || reiniciarPartida === "nao" || reiniciarPartida === "n" || reiniciarPartida === "no") {
             respostaPrompt = true;
         }
     }
