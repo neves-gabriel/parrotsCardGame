@@ -107,7 +107,6 @@ body{
     transform: rotateY(-180deg);
 }
 
-
 @media (max-width: 614px){
     .topo {
         width: auto;
