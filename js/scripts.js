@@ -3,7 +3,7 @@ let cartasSelecionadas = [];
 let segundos = 0;
 let intervalo;
 let bloqueio = false;
-let totalMovimentos = 0;
+let totalJogadas = 0;
 let cartaAnterior = "";
 let parrotAnterior = "";
 let cartasViradas = 0;
@@ -66,7 +66,7 @@ function userClick(event) {
     const tipoParrot = cartaEscolhida.classList[1]
     if (cartaEscolhida.classList[0] === "carta" && !cartaEscolhida.classList.contains("virada") && bloqueio !== true) {
         cartaEscolhida.classList.add("virada");
-        totalMovimentos++
+        totalJogadas++
         if (cartaAnterior === "") {
             cartaAnterior = cartaEscolhida;
             parrotAnterior = tipoParrot;
@@ -92,14 +92,14 @@ function userClick(event) {
 }
 
 function finalJogo() {
-    alert(`Você venceu o jogo em ${totalMovimentos} jogadas e ${segundos} segundos!`);
+    alert(`Você venceu o jogo em ${totalJogadas} jogadas e ${segundos} segundos!`);
     let respostaPrompt = false;
     while (!respostaPrompt) {
         reiniciarPartida = prompt("Você gostaria de reiniciar a partida? Responda abaixo com sim ou não");
         if (reiniciarPartida === "sim" || reiniciarPartida === "s") {
             respostaPrompt = true;
             qtdeCartas = 0;
-            totalMovimentos = 0;
+            totalJogadas = 0;
             cartasViradas = 0;
             segundos = 0;
             relogio.innerHTML = "0";
