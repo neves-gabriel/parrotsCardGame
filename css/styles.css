@@ -18,6 +18,7 @@ body{
 .titulo {
     text-align: center;
     font-size: 56px;
+    margin: 40px auto 47px auto;
 }
 
 .relogio {
@@ -89,4 +90,21 @@ body{
 
 .carta.unicorn .costa {
     background-image: url(../gif/unicornparrot.gif);
+}
+
+@media (max-width: 614px){
+    .topo {
+        width: auto;
+    }
+
+    .titulo {
+        font-size: 36px;
+        margin: 40px auto 10px auto;
+    }
+
+    .relogio {
+        top: 5px;
+        right: 5px;
+        font-size: 20px;
+    }
 }
