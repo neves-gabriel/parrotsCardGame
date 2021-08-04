@@ -4,6 +4,7 @@
 
 ### Realizado por Gabriel Neves no Bootcamp Responde Aí
 
-### Site disponivel em:
+### Site disponivel em: https://neves-gabriel.github.io/Projeto_04_parrotsCardGame/
 
 #### Preview do projeto:
+![Preview do projeto](img/preview.png)
