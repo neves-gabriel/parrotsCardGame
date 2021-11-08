@@ -7,8 +7,14 @@ let totalJogadas = 0;
 let cartaAnterior = "";
 let parrotAnterior = "";
 let cartasViradas = 0;
+let numeroJogadores = 0;
+let indJogador = 0;
+let dadosJogadores = [];
 let nome = "";
+let pontuacao = 0;
+let arrayPontuacoes = [];
 const relogio = document.getElementById("relogio");
+const overlayRanking = document.getElementById("overlayRanking");
 const tiposCartas = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"]
 
 document.querySelector("#baralho").addEventListener('click', userClick);
@@ -16,6 +22,7 @@ document.querySelector("#baralho").addEventListener('click', userClick);
 perguntarNome();
 
 function perguntarNome() {
+    numeroJogadores++;
     while (nome == "") {
         nome = prompt("Qual é o seu nome?");
     }
@@ -93,10 +100,51 @@ function userClick(event) {
             parrotAnterior = "";
         }
         if (cartasViradas === qtdeCartas) {
-            pararRelogio();
-            setTimeout(finalJogo, 1000);
+            pararRelogio();            
+            montarDados();
+            rankearPontuacao();
+            mostrarRanking();
+            setTimeout(finalJogo, 1000);   
         }
     }
+}
+
+function montarDados() {
+    pontuacao = Math.round( ( ( qtdeCartas * qtdeCartas * qtdeCartas ) / ( 4 * segundos * totalJogadas ) ) * 100 ) ;
+    dadosJogadores[indJogador] = new Array(5);
+    dadosJogadores[indJogador][0] = nome;
+    dadosJogadores[indJogador][1] = qtdeCartas;
+    dadosJogadores[indJogador][2] = totalJogadas;
+    dadosJogadores[indJogador][3] = segundos;
+    dadosJogadores[indJogador][4] = pontuacao;            
+    indJogador++; 
+    arrayPontuacoes.push(pontuacao);
+}
+
+function mostrarRanking() {
+    overlayRanking.style.display = "flex";
+    document.getElementById("tabelaRanking").innerHTML =
+        `<tr>
+            <th>Nome</th>
+            <th>Quantidade de Cartas</th>
+            <th>Jogadas</th>
+            <th>Segundos</th>
+            <th>Pontuação</th>
+        </tr>`
+    for (let i = 0; i < numeroJogadores; i++) {
+        document.getElementById("tabelaRanking").innerHTML +=
+            `<tr>
+                <td>${dadosJogadores[i][0]}</td>
+                <td>${dadosJogadores[i][1]}</td>
+                <td>${dadosJogadores[i][2]}</td>
+                <td>${dadosJogadores[i][3]}</td>
+                <td>${dadosJogadores[i][4]}</td>
+            </tr>`;
+        }
+}
+
+function rankearPontuacao() {
+    arrayPontuacoes.sort(function(a, b){return b - a});
 }
 
 function finalJogo() {
@@ -112,6 +160,7 @@ function finalJogo() {
             segundos = 0;
             relogio.innerHTML = "0";
             nome = "";
+            overlayRanking.style.display = "none";
             perguntarNome();
         } else if (reiniciarPartida === "não" || reiniciarPartida === "nao" || reiniciarPartida === "n" || reiniciarPartida === "no") {
             respostaPrompt = true;
