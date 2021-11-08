@@ -57,10 +57,10 @@ function montarBaralho() {
     document.getElementById("baralho").innerHTML = "";
     for (let i = 0; i < qtdeCartas; i++) {
         document.getElementById("baralho").innerHTML += 
-        `<li class="carta ${cartasSelecionadas[i]}">
-            <div class="frente face">
+        `<li class="carta ${cartasSelecionadas[i]}" data-identifier="card">
+            <div class="frente face" data-identifier="front-face">
             </div>
-            <div class="costa face">
+            <div class="costa face" data-identifier="back-face">
             </div>
         </li>`;
     }
@@ -78,7 +78,9 @@ function comparador() {
 
 function userClick(event) {
     const cartaEscolhida = event.target.parentNode;
-    const tipoParrot = cartaEscolhida.classList[1]
+    const card_type_position = 1
+    const tipoParrot = cartaEscolhida.classList[card_type_position];
+
     if (cartaEscolhida.classList[0] === "carta" && !cartaEscolhida.classList.contains("virada") && bloqueio !== true) {
         cartaEscolhida.classList.add("virada");
         totalJogadas++;
