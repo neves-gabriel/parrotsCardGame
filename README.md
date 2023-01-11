@@ -7,7 +7,7 @@ Project with JavaScript to implement Parrots Card Game, a themed memory game wit
 ![Preview do projeto](img/preview.png)
 ## Deploy
 
-Website available at: https://neves-gabriel.github.io/Projeto_04_parrotsCardGame/
+Website available at: https://neves-gabriel.github.io/parrotsCardGame/
 ## Author
 
 👤 **Gabriel Neves**
